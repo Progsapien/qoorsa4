@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include "circularlist.h"
+#include <QDebug>
 
 class Player : public QWidget
 {
@@ -17,7 +19,7 @@ public:
     Player(QWidget *parent = 0);
     ~Player();
 private:
-
+    CircularList *ob_circ_list;
 
 };
 
