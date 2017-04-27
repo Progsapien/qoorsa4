@@ -14,7 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         player.cpp \
-    circularlist.cpp
+    circularlist.cpp \
+    button.cpp
 
 HEADERS  += player.h \
-    circularlist.h
+    circularlist.h \
+    button.h
+
+RESOURCES += \
+    res.qrc

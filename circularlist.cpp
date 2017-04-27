@@ -67,5 +67,7 @@ bool CircularList::isEmpty() {
 }
 
 CircularList::~CircularList() {
-
+    while(!isEmpty()) {
+        pop();
+    }
 }
