@@ -26,6 +26,7 @@ public:
     List* top();
     void next();
     List* element();
+    int pos();
 
     int size();
     bool isEmpty();

@@ -7,11 +7,9 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QListWidget>
-#include <QListWidgetItem>
-#include <QFileDialog>
 #include "circularlist.h"
 #include <QDebug>
-#include "button.h"
+#include <QLineEdit>
 
 class Player : public QWidget
 {
@@ -23,20 +21,28 @@ public:
 private:
     CircularList *ob_circ_list;
 
-    QListWidget *ob_list_playlist;
+    QListWidget *ob_list_records;
 
-    QPushButton *ob_button_next,
-                *ob_button_prev,
-                *ob_button_play,
-                *ob_button_stop,
-                *ob_button_playlist,
-                *ob_button_open;
+    QPushButton *ob_button_add,
+                *ob_button_delete,
+                *ob_button_next;
 
     QVBoxLayout *ob_vbox_main;
+    QHBoxLayout *ob_hbox_controls;
 
-    QHBoxLayout *ob_hbox_controls_buttons;
+    QLabel *ob_label_name,
+           *ob_label_add,
+           *ob_label_controls;
 
-    QLabel *ob_label_track;
+    QLineEdit *ob_line_add;
+
+
+    void setAllToBlack(); // set black color to items in list;
+private slots:
+
+    void addRecord();
+    void deleteRecord();
+    void next();
 };
 
 #endif // PLAYER_H

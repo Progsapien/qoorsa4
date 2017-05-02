@@ -66,6 +66,18 @@ bool CircularList::isEmpty() {
     return first == NULL;
 }
 
+int CircularList::pos() {
+    List *new_current = first;
+    int pos = 0;
+
+    while(new_current != current) {
+        new_current = new_current->next;
+        pos++;
+    }
+
+    return pos;
+}
+
 CircularList::~CircularList() {
     while(!isEmpty()) {
         pop();
