@@ -9,16 +9,19 @@ CircularList::CircularList(QObject *parent) :
 }
 
 void CircularList::push(QString str) {
+
     List *new_item = new List;
 
     if(isEmpty()) {
         first = new_item;
-    } else {
-        current->next = new_item;
+        current = first;
+        current->next = first;
     }
 
+    List *old_next = current->next;
+    current->next = new_item;
     new_item->str = str;
-    new_item->next = first;
+    new_item->next = old_next;
     current = new_item;
     list_size++;
 }
@@ -28,6 +31,7 @@ void CircularList::pop() {
     if(isEmpty()) {
         return;
     } else if(current->next == current) {
+
         delete first;
         current = NULL;
         first = NULL;
@@ -42,8 +46,15 @@ void CircularList::pop() {
         next();
     }
 
+    if(remove_item == first) {
+        first = remove_item->next;
+    }
+
     current->next = remove_item->next;
+
     delete remove_item;
+    next();
+
     list_size--;
 }
 
@@ -51,6 +62,7 @@ void CircularList::next() {
     if(isEmpty()) {
         return;
     }
+
     current = current->next;
 }
 
@@ -67,12 +79,17 @@ bool CircularList::isEmpty() {
 }
 
 int CircularList::pos() {
-    List *new_current = first;
     int pos = 0;
 
-    while(new_current != current) {
-        new_current = new_current->next;
-        pos++;
+    if(!isEmpty()) {
+        List *new_current = first;
+
+        while(new_current != current) {
+            new_current = new_current->next;
+            pos++;
+        }
+    } else {
+        return -1;
     }
 
     return pos;

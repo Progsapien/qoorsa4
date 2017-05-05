@@ -8,6 +8,21 @@ Player::Player(QWidget *parent)
 
     ob_circ_list = new CircularList;
 
+  /*  ob_circ_list->push("123");
+    qDebug() << "Current " << ob_circ_list->element()->str << " " << ob_circ_list->element() << " Next " << ob_circ_list->element()->next->str << " " << ob_circ_list->element()->next;
+    ob_circ_list->push("234");
+    qDebug() << "Current " << ob_circ_list->element()->str << " " << ob_circ_list->element() << " Next " << ob_circ_list->element()->next->str << " " << ob_circ_list->element()->next;
+    ob_circ_list->push("567");
+    qDebug() << "Current " << ob_circ_list->element()->str << " " << ob_circ_list->element() << " Next " << ob_circ_list->element()->next->next->str << " " << ob_circ_list->element()->next->next;
+    ob_circ_list->next();
+    ob_circ_list->pop();
+    qDebug() << "Current " << ob_circ_list->element()->str << " " << ob_circ_list->element() << " Next " << ob_circ_list->element()->next->str << " " << ob_circ_list->element()->next;
+    ob_circ_list->next();
+    qDebug() << "Current " << ob_circ_list->element()->str << " " << ob_circ_list->element() << " Next " << ob_circ_list->element()->next->str << " " << ob_circ_list->element()->next;
+
+
+*/
+
     ob_button_add = new QPushButton("Добавить");
     ob_button_delete = new QPushButton("Удалить");
     ob_button_next = new QPushButton("Следующая запись");
@@ -47,7 +62,7 @@ Player::Player(QWidget *parent)
 void Player::addRecord() {
     if(ob_line_add->text().count() != 0) {
         ob_circ_list->push(ob_line_add->text());
-        ob_list_records->addItem(ob_line_add->text());
+        ob_list_records->insertItem(ob_circ_list->pos(), ob_line_add->text());
         setAllToBlack();
         ob_list_records->item(ob_circ_list->pos())->setTextColor(QColor(0,200,0));
     }
@@ -60,16 +75,22 @@ void Player::setAllToBlack() {
 }
 
 void Player::deleteRecord() {
+    qDebug() << ob_circ_list->pos();
     ob_list_records->takeItem(ob_circ_list->pos());
     ob_circ_list->pop();
     setAllToBlack();
-    ob_list_records->item(ob_circ_list->pos())->setTextColor(QColor(0,200,0));
+    if(!ob_circ_list->isEmpty()) {
+        qDebug() << ob_circ_list->pos();
+        ob_list_records->item(ob_circ_list->pos())->setTextColor(QColor(0,200,0));
+    }
 }
 
 void Player::next() {
-    ob_circ_list->next();
-    setAllToBlack();
-    ob_list_records->item(ob_circ_list->pos())->setTextColor(QColor(0,200,0));
+    if(!ob_circ_list->isEmpty()) {
+        ob_circ_list->next();
+        setAllToBlack();
+        ob_list_records->item(ob_circ_list->pos())->setTextColor(QColor(0,200,0));
+    }
     qDebug() << ob_circ_list->pos();
 }
 
