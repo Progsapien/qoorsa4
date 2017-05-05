@@ -13,10 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        player.cpp \
-    circularlist.cpp
+    circularlist.cpp \
+    ui.cpp
 
-HEADERS  += player.h \
-    circularlist.h
+HEADERS  += \
+    circularlist.h \
+    ui.h
 
 RESOURCES +=

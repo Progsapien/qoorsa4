@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef UI_H
+#define UI_H
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -11,13 +11,13 @@
 #include <QDebug>
 #include <QLineEdit>
 
-class Player : public QWidget
+class UI : public QWidget
 {
     Q_OBJECT
 
 public:
-    Player(QWidget *parent = 0);
-    ~Player();
+    UI(QWidget *parent = 0);
+    ~UI();
 private:
     CircularList *ob_circ_list;
 
@@ -45,4 +45,4 @@ private slots:
     void next();
 };
 
-#endif // PLAYER_H
+#endif // UI_H
